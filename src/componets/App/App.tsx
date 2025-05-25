@@ -34,7 +34,6 @@ export default function App() {
       if (results.length === 0) {
         toast.error("No movies found for your request.");
       }
-      console.log(results);
     } catch (error) {
       setIsError(true);
       toast.error("No response....");
