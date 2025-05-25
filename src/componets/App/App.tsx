@@ -1,7 +1,6 @@
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
-import styles from "./App.module.css";
 import type { Movie } from "../../types/movie";
 import { fetchMovies } from "../../services/movieService";
 import MovieGrid from "../MovieGrid/MovieGrid";
