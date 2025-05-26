@@ -13,19 +13,11 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = (movie: Movie) => {
-    setSelectedMovie(movie);
-    setIsModalOpen(true);
-  };
+  const openModal = (movie: Movie): void => setSelectedMovie(movie);
+  const closeModal = (): void => setSelectedMovie(null);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedMovie(null);
-  };
-
-  const handleSearch = async (query: string) => {
+  const handleSearch = async (query: string): Promise<void> => {
     try {
       setIsLoading(true);
       setIsError(false);
@@ -36,7 +28,7 @@ export default function App() {
       }
     } catch (error) {
       setIsError(true);
-      toast.error("No response....");
+      toast.error("No response. Please try again later.");
       console.error(error);
     } finally {
       setIsLoading(false);
@@ -50,11 +42,9 @@ export default function App() {
       {isError ? (
         <ErrorMessage />
       ) : (
-        movies.length > 0 && (
-          <MovieGrid results={movies} onMovieClick={openModal} />
-        )
+        movies.length > 0 && <MovieGrid movies={movies} onSelect={openModal} />
       )}
-      {isModalOpen && selectedMovie && (
+      {selectedMovie && (
         <MovieModal movie={selectedMovie} onClose={closeModal} />
       )}
       <Toaster position="top-center" reverseOrder={true} />

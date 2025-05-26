@@ -12,12 +12,12 @@ export interface SearchBarProps {
   onSubmit: (topic: string) => void;
 }
 
-export interface MovieResponse {
-  results: Movie[];
-  onMovieClick: (movie: Movie) => void;
+export interface MovieGridProps {
+  movies: Movie[];
+  onSelect: (movie: Movie) => void;
 }
 
-export interface ModalProps {
+export interface MovieModalProps {
   movie: Movie;
   onClose: () => void;
 }

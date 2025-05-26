@@ -1,10 +1,15 @@
 import css from "./MovieGrid.module.css";
-import type { MovieResponse } from "../../types/movie";
-export default function MovieGrid({ results, onMovieClick }: MovieResponse) {
+import type { MovieGridProps } from "../../types/movie";
+export default function MovieGrid({ movies, onSelect }: MovieGridProps) {
   return (
     <ul className={css.grid}>
-      {results.map((movie) => (
-        <li key={movie.id} onClick={() => onMovieClick(movie)}>
+      {movies.map((movie) => (
+        <li
+          key={movie.id}
+          onClick={(e: React.MouseEvent<HTMLLIElement>) => {
+            onSelect(movie);
+          }}
+        >
           <div className={css.card}>
             <img
               className={css.image}
